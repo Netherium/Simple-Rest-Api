@@ -1,0 +1,11 @@
+AppBundle\Entity\User:
+    user{1..5}:
+        userName: <username()>
+        password: <password()>
+        email: <email()>
+        name: <name()>
+        surname: <generateSurname()>
+        city: <city()>
+        country: <country()>
+        address: <address()>
+        active: <boolean(75)>
