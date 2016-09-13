@@ -1,11 +1,4 @@
 <?php
-/**
- * Created by airshop development team.
- * User: Gerpis
- * Date: 4/5/2016
- * Time: 10:11 πμ
- * © airshop.gr
- */
 
 namespace AppBundle\DataFixtures;
 
