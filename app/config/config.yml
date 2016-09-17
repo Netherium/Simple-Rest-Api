@@ -58,6 +58,25 @@ doctrine:
         auto_generate_proxy_classes: "%kernel.debug%"
         naming_strategy: doctrine.orm.naming_strategy.underscore
         auto_mapping: true
+        query_cache_driver:
+            type:                 array # Required
+        metadata_cache_driver:
+            type:                 array # Required
+        result_cache_driver:
+            type:                 redis # Required
+            host:                 "%redis_host%"
+            port:                 "%redis_port%"
+            instance_class:       "%redis_instance_class%"
+        second_level_cache:
+            region_cache_driver:
+                type:               redis
+                host:               "%redis_host%"
+                port:               "%redis_port%"
+                instance_class:     "%redis_instance_class%"
+            region_lock_lifetime: 10
+            log_enabled:          true
+            region_lifetime:      50
+            enabled:              true
 
 # Swiftmailer Configuration
 swiftmailer:
@@ -66,3 +85,38 @@ swiftmailer:
     username:  "%mailer_user%"
     password:  "%mailer_password%"
     spool:     { type: memory }
+
+# FOSRestBundle Configuration
+fos_rest:
+    body_listener: true
+    param_fetcher_listener: true
+    view:
+        view_response_listener: 'force'
+        formats:
+            jsonp: false
+            json: true
+            xml: false
+            rss: false
+        mime_types:
+            json: ['application/json', 'application/x-json']
+            xml: ['application/xml']
+            jpg: ['image/jpeg']
+            png: ['image/png']
+        jsonp_handler: ~
+    routing_loader:
+        default_format:  json
+        include_format:  false
+    format_listener:
+        enabled:    true
+        rules:
+            - { path: '^/api', priorities: ['json'], fallback_format: 'json', prefer_extension: false }
+            - { path: '^/', stop: true } # Available for version >= 1.5
+    exception:
+        enabled: true
+#
+#jms_serializer:
+#    metadata:
+#        directories:
+#            FOSUB:
+#                namespace_prefix: FOS\UsersBundle
+#                path: "%kernel.root_dir%/serializer/FOSUB"

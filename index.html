@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="RestApp">
+<head>
+    <meta charset="UTF-8">
+    <title>Rest Prototype</title>
+
+    <link href='./bower_components/bootstrap/dist/css/bootstrap.min.css' rel='stylesheet' type='text/css'>
+    <script src="./bower_components/angular/angular.min.js"></script>
+    <script src="./bower_components/angular-touch/angular-touch.min.js"></script>
+    <script src="./bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
+    <script src="./bower_components/angular-animate/angular-animate.min.js"></script>
+    <script src="./bower_components/angular-route/angular-route.min.js"></script>
+    <script src="./app.js"></script>
+</head>
+<body>
+<div class="container">
+    <div class="page-header">
+        <h1>Rest Prototype</h1>
+    </div>
+    <div class="page-header">
+        <h2>Input Controller</h2>
+    </div>
+    <div ng-controller="UsersController as userCtrl">
+        <form name="userForm" novalidate ng-submit="userForm.$valid && userForm.submit()">
+            <div class="row">
+                <div class="col-xs-6">
+                    <div class="form-group" ng-class="{ 'has-error' : userForm.username.$invalid && !userForm.username.$pristine }">
+                        <label for="input-user-user-name">Username</label>
+                        <input type="text" class="form-control" name="username" ng-model="userCtrl.user.user_name" id="input-user-user-name" required ng-minlength="4">
+                        <span ng-show="userForm.username.$error.minlength" class="help-block">Username is too short.</span>
+                    </div>
+                </div>
+                <div class="col-xs-6">
+                    <div class="form-group" ng-class="{ 'has-error' : userForm.password.$invalid && !userForm.password.$pristine }">
+                        <label for="input-user-password">Password</label>
+                        <input type="password" class="form-control" name="password" ng-model="userCtrl.user.password" id="input-user-password" required ng-minlength="4">
+                        <span ng-show="userForm.password.$error.minlength" class="help-block">Password too weak.</span>
+                    </div>
+                </div>
+                <div class="col-xs-6">
+                    <div class="form-group" ng-class="{ 'has-error' : userForm.email.$invalid && !userForm.email.$pristine }">
+                        <label for="input-user-email">Email</label>
+                        <input type="email" class="form-control" name="email" ng-model="userCtrl.user.email" id="input-user-email" required>
+                        <span ng-show="userForm.email.$error.email" class="help-block">Invalid Email</span>
+                    </div>
+                </div>
+                <div class="col-xs-6">
+                    <div class="form-group" ng-class="{ 'has-error' : userForm.first_name.$invalid && !userForm.first_name.$pristine }">
+                        <label for="input-user-first-name">First Name</label>
+                        <input type="text" class="form-control" name="first_name" ng-model="userCtrl.user.first_name" id="input-user-first-name" required>
+                    </div>
+                </div>
+                <div class="col-xs-6">
+                    <div class="form-group">
+                        <label for="input-user-last-name">Last Name</label>
+                        <input type="text" class="form-control" name="last_name" ng-model="userCtrl.user.last_name" id="input-user-last-name" required>
+                    </div>
+                </div>
+                <div class="col-xs-6">
+                    <div class="form-group">
+                        <label for="input-user-country">Country</label>
+                        <input type="text" class="form-control" ng-model="userCtrl.user.country" id="input-user-country" required>
+                    </div>
+                </div>
+                <div class="col-xs-6">
+                    <div class="form-group">
+                        <label for="input-user-city">City</label>
+                        <input type="text" class="form-control" ng-model="userCtrl.user.city" id="input-user-city" required>
+                    </div>
+                </div>
+                <div class="col-xs-6">
+                    <div class="form-group">
+                        <label for="input-user-address">Address</label>
+                        <input type="text" class="form-control" ng-model="userCtrl.user.address" id="input-user-address" required>
+                    </div>
+                </div>
+                <div class="col-xs-6">
+                    <div class="form-group">
+                        <div class="checkbox" ng-init="userCtrl.user.active = true">
+                            <label>
+                                <input type="checkbox" ng-init="" ng-model="userCtrl.user.active" id="input-user-active">
+                                Active
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-12 text-center">
+                    <button type="submit" ng-class="{ 'disabled' : !userForm.$valid }" class="btn btn-primary" ng-click="userCtrl.submit()">
+                        Submit
+                    </button>
+                </div>
+            </div>
+        </form>
+        <div class="panel panel-default" ng-repeat="user in userCtrl.users">
+            <div class="panel-heading">User {{user.id}}</div>
+            <div class="panel-body">
+                <dl class="dl-horizontal">
+                    <dt>user_name</dt>
+                    <dd>{{user.user_name}}</dd>
+                    <dt>email</dt>
+                    <dd>{{user.email}}</dd>
+                    <dt>name</dt>
+                    <dd>{{user.first_name}}</dd>
+                    <dt>surname</dt>
+                    <dd>{{user.last_name}}</dd>
+                    <dt>country</dt>
+                    <dd>{{user.country}}</dd>
+                    <dt>city</dt>
+                    <dd>{{user.city}}</dd>
+                    <dt>address</dt>
+                    <dd>{{user.address}}</dd>
+                    <dt>active</dt>
+                    <dd>{{user.active}}</dd>
+                </dl>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

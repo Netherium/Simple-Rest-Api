@@ -3,10 +3,10 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use JMS\Serializer\Annotation\Groups;
 
 /**
- * User
- *
+ * Class User
  * @ORM\Table(name="user")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\UserRepository")
  */
@@ -25,6 +25,7 @@ class User
 	 * @var string
 	 *
 	 * @ORM\Column(name="user_name", type="string", length=255)
+	 *
 	 */
 	private $userName;
 
@@ -32,6 +33,8 @@ class User
 	 * @var string
 	 *
 	 * @ORM\Column(name="password", type="text")
+	 * @Groups({"admin"})
+	 *
 	 */
 	private $password;
 
@@ -45,16 +48,16 @@ class User
     /**
      * @var string
      *
-     * @ORM\Column(name="name", type="string", length=255)
+     * @ORM\Column(name="first_name", type="string", length=255)
      */
-    private $name;
+    private $firstName;
 
 	/**
 	 * @var string
 	 *
-	 * @ORM\Column(name="surname", type="string", length=255)
+	 * @ORM\Column(name="last_name", type="string", length=255)
 	 */
-	private $surname;
+	private $lastName;
 
 	/**
 	 * @var string
@@ -167,51 +170,51 @@ class User
     }
 
     /**
-     * Set name
+     * Set firstName
      *
-     * @param string $name
+     * @param string $firstName
      *
      * @return User
      */
-    public function setName($name)
+    public function setFirstName($firstName)
     {
-        $this->name = $name;
+        $this->firstName = $firstName;
 
         return $this;
     }
 
     /**
-     * Get name
+     * Get firstName
      *
      * @return string
      */
-    public function getName()
+    public function getFirstName()
     {
-        return $this->name;
+        return $this->firstName;
     }
 
     /**
-     * Set surname
+     * Set lastName
      *
-     * @param string $surname
+     * @param string $lastName
      *
      * @return User
      */
-    public function setSurname($surname)
+    public function setLastName($lastName)
     {
-        $this->surname = $surname;
+        $this->lastName = $lastName;
 
         return $this;
     }
 
     /**
-     * Get surname
+     * Get lastName
      *
      * @return string
      */
-    public function getSurname()
+    public function getLastName()
     {
-        return $this->surname;
+        return $this->lastName;
     }
 
     /**
