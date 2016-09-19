@@ -5,6 +5,7 @@ A Rest Api based on [Symfony 3](https://symfony.com/)
 * A web server running PHP > 5.5.9
 * A database server supported by [doctrine driver](http://docs.doctrine-project.org/projects/doctrine-dbal/en/latest/reference/configuration.html#driver)
 * [Composer](https://getcomposer.org/)
+* (Optional) Redis Server for cached results
 
 ## Quick start
 1. Clone this repo: `git clone https://github.com/Netherium/Simple-Rest-Api.git`
@@ -18,6 +19,10 @@ A Rest Api based on [Symfony 3](https://symfony.com/)
 * [doctrine/doctrine-fixtures-bundle](https://packagist.org/packages/doctrine/doctrine-fixtures-bundle)
 * [nelmio/alice](https://github.com/nelmio/alice)
 * [doctrine/data-fixtures](https://github.com/doctrine/data-fixtures)
+
+## Notes
+* The frontend part will run only on localhost, unless you enable CORS.
+* Cached results already enabled to support a Redis server. Take a look at, `parameters.yml`, `config.yml`, `User.php` for further configuration. 
 
 ## Authors
 **Netherium**
